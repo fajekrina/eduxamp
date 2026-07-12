@@ -1,0 +1,32 @@
+<?php
+
+namespace Database\Seeders;
+
+use App\Models\Role;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
+
+class RoleSeeder extends Seeder
+{
+    public function run()
+    {
+        Role::insert([
+            [
+                'uuid' => Str::uuid(),
+                'name' => 'Administrator',
+                'description' => 'System Administrator',
+                'is_active' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'uuid' => Str::uuid(),
+                'role_name' => 'Student',
+                'description' => 'College Student',
+                'is_active' => true,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+        ]);
+    }
+}

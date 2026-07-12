@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('landing-page.main')
 
 @section('title')
     Eduxamp
@@ -19,7 +19,7 @@
                             Your platform for managing college enrollment,
                             majors, and student academic information.
                         </p>
-                        <a class="btn btn-light btn-lg mt-3">Login</a>
+                        <a class="btn btn-light btn-lg mt-3" href="{{ url('sign-in') }}">Login</a>
                     </div>
                     <div class="col-md-5 text-center">
                         <div class="bg-white text-primary rounded p-5 shadow">
@@ -77,7 +77,7 @@
             <div class="container text-center">
                 <h2>Ready to Apply?</h2>
                 <p>Login now and start your enrollment process.</p>
-                <a class="btn btn-primary">Get Started</a>
+                <a class="btn btn-primary" href="{{ url('sign-up') }}">Get Started</a>
             </div>
         </section>
     </div>

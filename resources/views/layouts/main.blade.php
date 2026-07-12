@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -9,18 +10,23 @@
 
     @include('layouts/css_global')
     @yield('css_custom')
-  </head>
-  <body>
-    <div class="wrapper">
-      <!-- Navbar -->
-      @include('layouts/navbar')
-      <!-- Sidebar -->
-      @include('layouts/sidebar')
-      <!-- Content -->
-      @yield('content')
+</head>
+
+<body>
+    <div id="main" class="wrapper">
+        <!-- Navbar -->
+        @include('layouts/navbar')
+
+        <div class="d-flex">
+            <!-- Sidebar -->
+            @include('layouts/sidebar')
+            <!-- Content -->
+            @yield('content')
+        </div>
     </div>
 
     @include('layouts/js_global')
     @yield('js_custom')
-  </body>
+</body>
+
 </html>
