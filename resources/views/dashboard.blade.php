@@ -9,7 +9,7 @@ Eduxamp | Dashboard
 
 @section('content')
 <div class="flex-grow-1 p-4">
-  <h1>Good Afternoon</h1>
+  <h1>{{ $greeting }} {{ auth()->user()->name }}</h1>
 </div>
 @endsection
 

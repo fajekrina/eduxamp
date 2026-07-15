@@ -14,7 +14,8 @@ class RoleMiddleware
         }
 
         if (auth()->user()->role_id != $roleId) {
-            abort(403, 'Unauthorized.');
+            // abort(403, 'Unauthorized.');
+            return redirect()->route('error.403');
         }
 
         return $next($request);

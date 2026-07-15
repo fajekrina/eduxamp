@@ -19,6 +19,6 @@
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
   </form>
-  <span>Don't have an account? <a href="{{ url('sign-up') }}">Sign Up</a> here.</span>
+  {{-- <span>Don't have an account? <a href="{{ url('sign-up') }}">Sign Up</a> here.</span> --}}
 </div>
 @endsection

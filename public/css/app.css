@@ -19,3 +19,12 @@ body {
     height: calc(100vh - var(--nav));
     overflow-y: auto;
 }
+
+aside ul li.active {
+    background-color: #adb5bd;
+    /* border-radius: .375rem; */
+}
+
+aside ul li.active a.nav-link span {
+    color: #fff;
+}

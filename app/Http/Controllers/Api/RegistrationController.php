@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Role;
 use App\Models\User;
+use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -18,8 +19,7 @@ class RegistrationController extends Controller
             'email' => 'required|email',
             'password' => 'required',
         ]);
-            
-        // dd('HERE');    
+
         if (!Auth::attempt($credential)) {
             return back()
                 ->withErrors([
@@ -27,7 +27,7 @@ class RegistrationController extends Controller
                 ])
                 ->withInput();
         }
-    // dd('HERE2');    
+         
         $request->session()->regenerate();
 
         session([
@@ -64,10 +64,8 @@ class RegistrationController extends Controller
     {
         Auth::logout();
 
-        $request->session()->invalidate();
+        $request->session()->flush();
 
-        $request->session()->regenerateToken();
-
-        return redirect()->route('login');
+        return redirect()->route('registration.sign-in');
     }
 }
