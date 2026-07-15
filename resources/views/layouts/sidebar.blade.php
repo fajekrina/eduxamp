@@ -7,7 +7,7 @@
             </a>
         </li>
 
-        @if (auth()->user()->id == '1')
+        @if (auth()->user()->id == '1' || auth()->user()->name == 'Academic Staff')
             <li class="nav-item @if(request()->segment(1) == 'student') active @endif">
                 <a href="{{ route('student.index') }}" class="nav-link">
                     <i class="bi bi-mortarboard"></i>
@@ -20,30 +20,30 @@
                     <span>Majors</span>
                 </a>
             </li>
+            <li class="nav-item @if(request()->segment(1) == 'enrollment') active @endif">
+                <a href="{{ route('enrollment.index') }}" class="nav-link">
+                    <i class="bi bi-journal-check"></i>
+                    <span>Enrollments</span>
+                </a>
+            </li>   
         @endif
-
-        <li class="nav-item @if(request()->segment(1) == 'enrollment') active @endif">
-            <a href="{{ route('enrollment.index') }}" class="nav-link">
-                <i class="bi bi-journal-check"></i>
-                <span>Enrollments</span>
-            </a>
-        </li>
-
+        
         @if (auth()->user()->id == '1')
+        
             <li class="nav-item @if(request()->segment(1) == 'user') active @endif">
                 <a href="{{ route('user.index') }}" class="nav-link">
                     <i class="bi bi-people"></i>
                     <span>Users</span>
                 </a>
             </li>
-
-            <li class="nav-item @if(request()->segment(1) == 'role') active @endif">
-                <a href="{{ route('role.index') }}" class="nav-link">
-                    <i class="bi bi-shield-lock"></i>
-                    <span>Roles</span>
-                </a>
-            </li>
         @endif
+
+        <li class="nav-item @if(request()->segment(1) == 'role') active @endif">
+            <a href="{{ route('role.index') }}" class="nav-link">
+                <i class="bi bi-shield-lock"></i>
+                <span>Roles</span>
+            </a>
+        </li>
 
     </ul>
 

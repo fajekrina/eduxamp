@@ -122,6 +122,10 @@
                             Date
                         </th>
 
+                        <th data-options="field:'name'" width="120">
+                            Name
+                        </th>
+                        
                         <th data-options="field:'event'" width="120">
                             Event
                         </th>

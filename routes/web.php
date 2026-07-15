@@ -36,13 +36,13 @@ Route::get('/sign-out', [RegistrationController::class, 'sign_out'])->name('sign
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
+    /* Role Management*/
+    Route::get('/role/index', [RoleController::class, 'index'])->name('role.index');
+    Route::get('/role/create', [RoleController::class, 'create'])->name('role.create');
+    Route::get('/role/edit/{id}', [RoleController::class, 'edit'])->name('role.edit');
+    Route::get('/role/detail/{id}', [RoleController::class, 'detail'])->name('role.detail');
+    
     Route::middleware('role:3')->group(function () {
-        /* Role Management*/
-        Route::get('/role/index', [RoleController::class, 'index'])->name('role.index');
-        Route::get('/role/create', [RoleController::class, 'create'])->name('role.create');
-        Route::get('/role/edit/{id}', [RoleController::class, 'edit'])->name('role.edit');
-        Route::get('/role/detail/{id}', [RoleController::class, 'detail'])->name('role.detail');
-        
         /* Major Management*/
         Route::get('/major/index', [MajorController::class, 'index'])->name('major.index');
         Route::get('/major/create', [MajorController::class, 'create'])->name('major.create');
@@ -55,27 +55,24 @@ Route::middleware('auth')->group(function () {
         Route::get('/user/edit/{id}', [UserController::class, 'edit'])->name('user.edit');
         Route::get('/user/detail/{id}', [UserController::class, 'detail'])->name('user.detail');
 
-        /* Enrollment Management*/
-        Route::get('/enrollment/index', [EnrollmentController::class, 'index'])->name('enrollment.index');
-
         /* Student Management*/
         Route::get('/student/index', [StudentController::class, 'index'])->name('student.index');
         Route::get('/student/create', [StudentController::class, 'create'])->name('student.create');
         Route::get('/student/edit/{id}', [StudentController::class, 'edit'])->name('student.edit');
         Route::get('/student/detail/{id}', [StudentController::class, 'detail'])->name('student.detail');
         
-        /* Student Management*/
+        /* Enrollment Management*/
         Route::get('/enrollment/index', [EnrollmentController::class, 'index'])->name('enrollment.index');
         Route::get('/enrollment/create', [EnrollmentController::class, 'create'])->name('enrollment.create');
         Route::get('/enrollment/edit/{id}', [EnrollmentController::class, 'edit'])->name('enrollment.edit');
         Route::get('/enrollment/detail/{id}', [EnrollmentController::class, 'detail'])->name('enrollment.detail');
 
         Route::prefix('api')->group(function () {
-            Route::get('/role/all', [ApiRoleController::class, 'getAll'])->name('api.role.all');
-            Route::post('/role/store', [ApiRoleController::class, 'store'])->name('api.role.store');
-            Route::post('/role/update/{id}', [ApiRoleController::class, 'update'])->name('api.role.update');
-            Route::get('/role/find/{id}', [ApiRoleController::class, 'find'])->name('api.role.find');
-            Route::get('/role/destroy/{id}', [ApiRoleController::class, 'destroy'])->name('api.role.destroy');
+            // Route::get('/role/all', [ApiRoleController::class, 'getAll'])->name('api.role.all');
+            // Route::post('/role/store', [ApiRoleController::class, 'store'])->name('api.role.store');
+            // Route::post('/role/update/{id}', [ApiRoleController::class, 'update'])->name('api.role.update');
+            // Route::get('/role/find/{id}', [ApiRoleController::class, 'find'])->name('api.role.find');
+            // Route::get('/role/destroy/{id}', [ApiRoleController::class, 'destroy'])->name('api.role.destroy');
             
             Route::get('/major/all', [ApiMajorController::class, 'getAll'])->name('api.major.all');
             Route::post('/major/store', [ApiMajorController::class, 'store'])->name('api.major.store');
@@ -96,6 +93,7 @@ Route::middleware('auth')->group(function () {
             Route::get('/student/destroy/{id}', [ApiStudentController::class, 'destroy'])->name('api.student.destroy');
             Route::post('/student/export', [ApiStudentController::class, 'export'])->name('api.student.export');
             Route::post('/student/import', [ApiStudentController::class, 'import'])->name('api.student.import');
+            Route::get('/student/export/status/{filename}', [ApiStudentController::class, 'exportStatus'])->name('api.student.export.status');
             
             Route::get('/enrollment/all', [ApiEnrollmentController::class, 'getAll'])->name('api.enrollment.all');
             Route::post('/enrollment/store', [ApiEnrollmentController::class, 'store'])->name('api.enrollment.store');
@@ -104,6 +102,14 @@ Route::middleware('auth')->group(function () {
             Route::get('/enrollment/destroy/{id}', [ApiEnrollmentController::class, 'destroy'])->name('api.enrollment.destroy');
             Route::get('/enrollment/history/{id}', [ApiEnrollmentController::class, 'history'])->name('api.enrollment.history');
         });
+    });
+
+    Route::prefix('api')->group(function () {
+        Route::get('/role/all', [ApiRoleController::class, 'getAll'])->name('api.role.all');
+        Route::post('/role/store', [ApiRoleController::class, 'store'])->name('api.role.store');
+        Route::post('/role/update/{id}', [ApiRoleController::class, 'update'])->name('api.role.update');
+        Route::get('/role/find/{id}', [ApiRoleController::class, 'find'])->name('api.role.find');
+        Route::get('/role/destroy/{id}', [ApiRoleController::class, 'destroy'])->name('api.role.destroy');
     });
 });
 

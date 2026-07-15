@@ -17,7 +17,7 @@
         <!-- Navbar -->
         @include('layouts/navbar')
 
-        <div class="d-flex">
+        <div class="d-flex align-items-stretch min-vh-100">
             <!-- Sidebar -->
             @include('layouts/sidebar')
             <!-- Content -->

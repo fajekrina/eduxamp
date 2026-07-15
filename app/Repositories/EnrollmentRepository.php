@@ -24,9 +24,10 @@ class EnrollmentRepository extends BaseRepo
 
     public function history($id)
     {
-        $audits = Audit::where('auditable_type', Enrollment::class)
+        $audits = Audit::join('users', 'users.id', 'audits.user_id')
+            ->where('auditable_type', Enrollment::class)
             ->where('auditable_id', $id)
-            ->orderByDesc('created_at')
+            ->orderByDesc('audits.created_at')
             ->get();
 
         $rows = [];
@@ -47,6 +48,7 @@ class EnrollmentRepository extends BaseRepo
                     'created_at' => $audit->created_at->format('Y-m-d H:i:s'),
                     'event' => $audit->event,
                     'source' => 'Enrollment',
+                    'name' => $audit->name,
                     'field' => ucwords(str_replace('_', ' ', $field)),
                     'old_value' => $oldValues[$field] ?? '-',
                     'new_value' => $newValues[$field] ?? '-',

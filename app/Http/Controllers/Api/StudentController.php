@@ -138,4 +138,14 @@ class StudentController extends Controller
             'message' => 'Import has been queued.'
         ]);
     }
+
+    public function exportStatus($filename)
+    {
+        $path = storage_path('app/public/exports/' . $filename);
+
+        return response()->json([
+            'ready' => file_exists($path),
+            'url' => asset('storage/exports/' . $filename)
+        ]);
+    }
 }

@@ -251,6 +251,27 @@
             });
         }
 
+        function checkExportStatus(filename) {
+            console.log('HERE');
+            let interval = setInterval(function () {
+
+                $.get('/api/student/export/status/' + filename, function (res) {
+                    console.log(res);
+                    console.log(filename);
+                    if (res.ready) {
+
+                        clearInterval(interval);
+
+                        window.location.href = res.url;
+
+                    }
+
+                });
+
+            }, 3000); // cek tiap 3 detik
+
+        }
+
         function showExportModal() {
             $('#exportModal').modal('show');
         }
@@ -282,6 +303,7 @@
 
                     $('#exportModal').modal('hide');
 
+                    checkExportStatus(res.filename);
                 }
 
             });

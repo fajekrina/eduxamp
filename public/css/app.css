@@ -16,7 +16,7 @@ body {
 }
 
 #sidebar {
-    height: calc(100vh - var(--nav));
+    /* height: calc(100vh - var(--nav)); */
     overflow-y: auto;
 }
 
